@@ -1,16 +1,25 @@
 import 'package:flutter/material.dart';
-import '../../global.dart';
+import 'package:movie_db/global.dart';
+import 'package:movie_db/models/featuredmoviemodel.dart';
 import '../screens/screens.dart';
 
 class MovieContainer extends StatelessWidget {
-  final int id;
+  final FeaturedMovieModel snapshot;
 
-  const MovieContainer({Key key, this.id}) : super(key: key);
+  const MovieContainer({
+    Key key,
+    this.snapshot,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, DetailsScreen.route);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (ctx) => DetailsScreen(id: snapshot.id),
+          ),
+        );
       },
       child: Container(
         width: MediaQuery.of(context).size.width / 2.5,
@@ -28,7 +37,8 @@ class MovieContainer extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(15.0),
                 child: Image.network(
-                  movieList[id]['img'],
+                  // movieList[id]['img'],
+                  getPosterImage(snapshot.poster_path),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -47,7 +57,8 @@ class MovieContainer extends StatelessWidget {
                   color: Colors.black45,
                 ),
                 child: Text(
-                  "${movieList[id]['title']}",
+                  // "${movieList[id]['title']}",
+                  snapshot.original_title,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 23,

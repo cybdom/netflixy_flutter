@@ -14,10 +14,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         fontFamily: 'Raleway'
       ),
-      initialRoute: HomeScreen.route,
+      initialRoute: '/',
       routes: {
-        DetailsScreen.route: (ctx) => DetailsScreen(),
-        HomeScreen.route: (ctx) => HomeScreen(),
+        '/': (ctx) => HomeScreen(),
         VideoApp.route: (ctx) => VideoApp(),
       },
     );

@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:movie_db/ui/screens/screens.dart';
 
 class MyHero extends StatelessWidget {
+  final String imgUrl;
+
+  const MyHero({Key key, @required this.imgUrl}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,39 +20,41 @@ class MyHero extends StatelessWidget {
             child: ClipPath(
               clipper: CustomClip(),
               child: Image.network(
-                "https://image.tmdb.org/t/p/w600_and_h900_bestv2/ziEuG1essDuWuC5lpWUaw1uXY2O.jpg",
+                "$imgUrl",
                 fit: BoxFit.cover,
               ),
             ),
           ),
           Positioned(
-            top: 5,
             right: 0,
             left: 0,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                IconButton(
-                  icon: Icon(Icons.arrow_back, color: Colors.black),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                ),
-                Text(
-                  "Netflixy",
-                  style: Theme.of(context)
-                      .textTheme
-                      .title
-                      .apply(color: Colors.white),
-                ),
-                IconButton(
-                  icon: Icon(
-                    Icons.favorite_border,
-                    color: Colors.white,
+            child: Container(
+              color: Colors.black.withOpacity(.4),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  IconButton(
+                    icon: Icon(Icons.arrow_back, color: Colors.white),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                   ),
-                  onPressed: () {},
-                ),
-              ],
+                  Text(
+                    "Netflixy",
+                    style: Theme.of(context)
+                        .textTheme
+                        .title
+                        .apply(color: Colors.white),
+                  ),
+                  IconButton(
+                    icon: Icon(
+                      Icons.favorite_border,
+                      color: Colors.white,
+                    ),
+                    onPressed: () {},
+                  ),
+                ],
+              ),
             ),
           ),
           Align(
