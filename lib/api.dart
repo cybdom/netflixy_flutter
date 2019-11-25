@@ -9,7 +9,7 @@ class Api {
   var httpClient = http.Client();
 
   static const url = "https://api.themoviedb.org/3";
-  static const apiKey = "f476c933beeb792de073665402a501ad";
+  static const apiKey = "YOUR API KEY";
 
   Future<List<GenreModel>> getGenreList() async {
     final response = await http.get('$url/genre/movie/list?api_key=$apiKey');
