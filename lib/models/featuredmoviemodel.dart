@@ -15,15 +15,15 @@ class FeaturedMovieModel {
       this.id});
   factory FeaturedMovieModel.fromJson(Map<String, dynamic> json) {
     return FeaturedMovieModel(
-      original_title: json['original_title'] ?? '',
-      overview: json['overview'] ?? '',
-      poster_path: json['poster_path'] ?? '',
-      id: json['id'] ?? '',
-      // country: json['production_companies'][0]['origin_country'] ?? '',
-      release_date: json['release_date'] ?? '',
-      // run_time: json['runtime'] ?? '',
-      // genre: json['genres'] ?? '',
-      rating: json['vote_average'] ?? ''
+      original_title: json['original_title'],
+      overview: json['overview'],
+      poster_path: json['poster_path'],
+      id: json['id'],
+      // country: json['production_companies'][0]['origin_country'],
+      release_date: json['release_date'],
+      // run_time: json['runtime'],
+      // genre: json['genres'],
+      rating: json['vote_average']
     );
   }
 }
