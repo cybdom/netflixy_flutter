@@ -11,9 +11,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  Future<List<FeaturedMovieModel>> featuredMovies;
-  Future<List<GenreModel>> genreList;
-  Api _api;
+  late Future<List<FeaturedMovieModel>> featuredMovies;
+  late Future<List<GenreModel>> genreList;
+  late Api _api;
   @override
   void initState() {
     super.initState();
@@ -66,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       return ListView.builder(
-                        itemCount: snapshot.data.length,
+                        itemCount: snapshot.data?.length,
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (ctx, id) {
                           return Container(
@@ -90,11 +90,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 5.0),
                             child: Text(
-                              "${snapshot.data[id].name}",
+                              "${snapshot.data![id].name}",
                               style: Theme.of(context)
                                   .textTheme
-                                  .headline
-                                  .apply(color: Colors.white),
+                                  .headlineSmall
+                                  ?.apply(color: Colors.white),
                             ),
                           );
                         },
@@ -120,9 +120,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       if (snapshot.hasData) {
                         return ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: snapshot.data.length,
+                          itemCount: snapshot.data?.length,
                           itemBuilder: (ctx, id) {
-                            return MovieContainer(snapshot: snapshot.data[id]);
+                            return MovieContainer(snapshot: snapshot.data![id]);
                           },
                         );
                       } else {
@@ -147,9 +147,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       if (snapshot.hasData) {
                         return ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: snapshot.data.length,
+                          itemCount: snapshot.data?.length,
                           itemBuilder: (ctx, id) {
-                            return MovieContainer(snapshot: snapshot.data[id]);
+                            return MovieContainer(snapshot: snapshot.data![id]);
                           },
                         );
                       } else {

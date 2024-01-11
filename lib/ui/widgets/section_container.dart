@@ -4,7 +4,7 @@ class SectionContainer extends StatelessWidget {
   final Widget child;
   final String sectionTitle;
   const SectionContainer(
-      {Key key, @required this.child, @required this.sectionTitle})
+      {Key? key, required this.child, required this.sectionTitle})
       : super(key: key);
   @override
   Widget build(BuildContext context) {

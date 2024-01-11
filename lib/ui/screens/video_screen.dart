@@ -9,7 +9,7 @@ class VideoApp extends StatefulWidget {
 }
 
 class _VideoAppState extends State<VideoApp> {
-  VideoPlayerController _controller;
+  late VideoPlayerController _controller;
 
   @override
   void initState() {
@@ -18,9 +18,11 @@ class _VideoAppState extends State<VideoApp> {
       DeviceOrientation.landscapeRight,
       DeviceOrientation.landscapeLeft,
     ]);
-    _controller = VideoPlayerController.network(
-        'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4')
-      ..initialize().then((_) {
+    _controller = VideoPlayerController.networkUrl(
+      Uri.parse(
+        'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4',
+      ),
+    )..initialize().then((_) {
         // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
         setState(() {});
       });
@@ -35,7 +37,7 @@ class _VideoAppState extends State<VideoApp> {
         body: Stack(
           children: <Widget>[
             Positioned.fill(
-              child: _controller.value.initialized
+              child: _controller.value.isInitialized
                   ? AspectRatio(
                       aspectRatio: _controller.value.aspectRatio,
                       child: VideoPlayer(_controller),

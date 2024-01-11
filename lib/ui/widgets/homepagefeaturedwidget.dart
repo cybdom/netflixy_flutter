@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:movie_db/models/featuredmoviemodel.dart';
 import 'package:movie_db/global.dart';
+
 class HomePageFeaturedWidget extends StatelessWidget {
   final AsyncSnapshot<List<FeaturedMovieModel>> snapshot;
   const HomePageFeaturedWidget({
-    Key key,
-    this.snapshot,
+    Key? key,
+    required this.snapshot,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return PageView.builder(
-      itemCount: snapshot.data.length,
+      itemCount: snapshot.data?.length,
       itemBuilder: (ctx, id) {
         return Container(
           margin: EdgeInsets.all(15.0),
@@ -20,7 +21,7 @@ class HomePageFeaturedWidget extends StatelessWidget {
             boxShadow: [
               BoxShadow(
                   blurRadius: 5.0,
-                  color: Colors.grey[400],
+                  color: Colors.grey.shade400,
                   offset: Offset(0, 3))
             ],
           ),
@@ -31,7 +32,7 @@ class HomePageFeaturedWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15.0),
                   child: Image.network(
                     // movieList[id]['img'],
-                    getPosterImage(snapshot.data[id].poster_path),
+                    getPosterImage(snapshot.data![id].poster_path),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -50,7 +51,7 @@ class HomePageFeaturedWidget extends StatelessWidget {
                     color: Colors.black45,
                   ),
                   child: Text(
-                    "${snapshot.data[id].original_title}",
+                    "${snapshot.data![id].original_title}",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 23,

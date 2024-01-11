@@ -9,15 +9,15 @@ import '../../api.dart';
 class DetailsScreen extends StatefulWidget {
   final int id;
 
-  const DetailsScreen({Key key, this.id}) : super(key: key);
+  const DetailsScreen({Key? key, required this.id}) : super(key: key);
 
   @override
   _DetailsScreenState createState() => _DetailsScreenState();
 }
 
 class _DetailsScreenState extends State<DetailsScreen> {
-  Api _api;
-  Future<MovieModel> movieModel;
+  late Api _api;
+  late Future<MovieModel> movieModel;
   @override
   void initState() {
     _api = Api();
@@ -38,7 +38,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 child: Column(
                   children: <Widget>[
                     MyHero(
-                      imgUrl: getPosterImage(snapshot.data.poster_path),
+                      imgUrl: getPosterImage(snapshot.data!.poster_path),
                     ),
                     SizedBox(
                       height: 11,
@@ -48,8 +48,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       child: Column(
                         children: <Widget>[
                           Text(
-                            "${snapshot.data.original_title}",
-                            style: Theme.of(context).textTheme.headline,
+                            "${snapshot.data!.original_title}",
+                            style: Theme.of(context).textTheme.headlineSmall,
                           ),
                           SizedBox(
                             height: 7.0,
@@ -57,19 +57,19 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           RichText(
                             text: TextSpan(
                               children: List.generate(
-                                snapshot.data.genre.length,
+                                snapshot.data!.genre.length,
                                 (i) {
                                   return TextSpan(
                                       text:
-                                          "${snapshot.data.genre[i]['name']} ");
+                                          "${snapshot.data!.genre[i]['name']} ");
                                 },
                               ),
-                              style: Theme.of(context).textTheme.caption,
+                              style: Theme.of(context).textTheme.bodySmall,
                             ),
                           ),
                           SizedBox(height: 9.0),
-                          RatingBar(
-                            initialRating: snapshot.data.rating,
+                          RatingBar.builder(
+                            initialRating: snapshot.data!.rating,
                             // initialRating: 3,
                             direction: Axis.horizontal,
                             allowHalfRating: true,
@@ -92,11 +92,13 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                 children: <Widget>[
                                   Text(
                                     "Year",
-                                    style: Theme.of(context).textTheme.caption,
+                                    style:
+                                        Theme.of(context).textTheme.bodySmall,
                                   ),
                                   Text(
-                                    "${DateTime.parse(snapshot.data.release_date).year}",
-                                    style: Theme.of(context).textTheme.subhead,
+                                    "${DateTime.parse(snapshot.data!.release_date).year}",
+                                    style:
+                                        Theme.of(context).textTheme.titleMedium,
                                   ),
                                 ],
                               ),
@@ -104,11 +106,13 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                 children: <Widget>[
                                   Text(
                                     "Country",
-                                    style: Theme.of(context).textTheme.caption,
+                                    style:
+                                        Theme.of(context).textTheme.bodySmall,
                                   ),
                                   Text(
-                                    "${snapshot.data.country}",
-                                    style: Theme.of(context).textTheme.subhead,
+                                    "${snapshot.data!.country}",
+                                    style:
+                                        Theme.of(context).textTheme.titleMedium,
                                   ),
                                 ],
                               ),
@@ -116,11 +120,13 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                 children: <Widget>[
                                   Text(
                                     "Length",
-                                    style: Theme.of(context).textTheme.caption,
+                                    style:
+                                        Theme.of(context).textTheme.bodySmall,
                                   ),
                                   Text(
-                                    "${snapshot.data.run_time} min",
-                                    style: Theme.of(context).textTheme.subhead,
+                                    "${snapshot.data!.run_time} min",
+                                    style:
+                                        Theme.of(context).textTheme.titleMedium,
                                   ),
                                 ],
                               ),
@@ -128,12 +134,12 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           ),
                           SizedBox(height: 13.0),
                           Text(
-                            "${snapshot.data.overview}",
+                            "${snapshot.data!.overview}",
                             textAlign: TextAlign.center,
                             style: Theme.of(context)
                                 .textTheme
-                                .body1
-                                .apply(fontSizeFactor: 1.2),
+                                .bodyMedium
+                                ?.apply(fontSizeFactor: 1.2),
                           ),
                           SizedBox(height: 13.0),
                         ],

@@ -7,8 +7,8 @@ class MovieContainer extends StatelessWidget {
   final FeaturedMovieModel snapshot;
 
   const MovieContainer({
-    Key key,
-    this.snapshot,
+    Key? key,
+    required this.snapshot,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,9 @@ class MovieContainer extends StatelessWidget {
           borderRadius: BorderRadius.circular(15.0),
           boxShadow: [
             BoxShadow(
-                blurRadius: 5.0, color: Colors.grey[400], offset: Offset(0, 3))
+                blurRadius: 5.0,
+                color: Colors.grey.shade400,
+                offset: Offset(0, 3))
           ],
         ),
         child: Stack(

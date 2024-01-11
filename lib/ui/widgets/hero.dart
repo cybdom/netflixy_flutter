@@ -4,7 +4,7 @@ import 'package:movie_db/ui/screens/screens.dart';
 class MyHero extends StatelessWidget {
   final String imgUrl;
 
-  const MyHero({Key key, @required this.imgUrl}) : super(key: key);
+  const MyHero({Key? key, required this.imgUrl}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -43,8 +43,8 @@ class MyHero extends StatelessWidget {
                     "Netflixy",
                     style: Theme.of(context)
                         .textTheme
-                        .title
-                        .apply(color: Colors.white),
+                        .titleLarge
+                        ?.apply(color: Colors.white),
                   ),
                   IconButton(
                     icon: Icon(
