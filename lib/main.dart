@@ -12,22 +12,11 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'Raleway'),
-      // initialRoute: '/',
-      // routes: {
-      //   '/': (ctx) => HomeScreen(),
-      //   VideoApp.route: (ctx) => VideoApp(),
-      // },
-      home: Scaffold(
-          body: Column(
-        children: [
-          ElevatedButton(
-              onPressed: () {
-                Api().getFeaturedMovies();
-                Api().getGenreList();
-              },
-              child: Text("test"))
-        ],
-      )),
+      initialRoute: '/',
+      routes: {
+        '/': (ctx) => HomeScreen(),
+        VideoApp.route: (ctx) => VideoApp(),
+      },
     );
   }
 }
